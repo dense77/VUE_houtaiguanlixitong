@@ -82,17 +82,18 @@ const saveEdit = (formEl: FormInstance | undefined) => {
 
 			const headers = {
 			// 'Authorization': token,
-			'Content-Type': 'application/json',
+				'Content-Type': 'application/json'
 			};
 
-			const params = {
+			const data = {
 				username: form.value.username,
 				password: form.value.password,
 			};
 
 			const addAdmin = async () => {
                 try {
-                    const result = await postRequest('/admin/register', params, headers);
+					console.log('data', data);
+                    const result = await postRequest('/admin/register', data, headers);
                     if(result.code == 0){
 						ElMessage.error('管理员新增成功');
 						console.log('管理员信息新增完成')

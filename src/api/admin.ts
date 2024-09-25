@@ -7,11 +7,11 @@ const api = axios.create({
   timeout: 1000, // 请求超时时间
 });
 
-// post
-export async function postRequest(url: string, params?: any, headers?: any) {
+
+// POST请求函数
+export async function postRequest(url: string, data?: any, headers?: any) {
   try {
-    const response = await api.post(url, { 
-      params: params, // 传递params作为查询参数
+    const response = await api.post(url, data, { 
       headers: headers, // 传递headers作为请求头部
     });
     return response.data; // 返回响应数据
@@ -20,7 +20,6 @@ export async function postRequest(url: string, params?: any, headers?: any) {
     throw error; // 抛出错误
   }
 }
-
 
 // GET请求函数
 export async function getRequest(url: string, params?: any, headers?: any) {
