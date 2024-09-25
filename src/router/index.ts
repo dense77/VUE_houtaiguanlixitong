@@ -41,15 +41,15 @@ const routes: RouteRecordRaw[] = [
             //     },
             //     component: () => import(/* webpackChunkName: "table-editor" */ '../views/table/competition_table.vue'),
             // },
-            // {
-            //     path: '/competition_comment_table',
-            //     name: 'competition_comment_table',
-            //     meta: {
-            //         title: '竞赛评论展示',
-            //         noAuth: true,
-            //     },
-            //     component: () => import(/* webpackChunkName: "table-editor" */ '../views/table/competition_comment_table.vue'),
-            // },
+            {
+                path: '/commenttable',
+                name: 'commenttable',
+                meta: {
+                    title: '竞赛评论展示',
+                    noAuth: true,
+                },
+                component: () => import(/* webpackChunkName: "table-editor" */ '../views/table/commenttable.vue'),
+            },
             {
                 path: '/system-user',
                 name: 'system-user',

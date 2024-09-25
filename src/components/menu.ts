@@ -245,7 +245,7 @@ export const menuData: Menus[] = [
             {
                 id: '112',
                 pid: '11',
-                index: '/admin_table',
+                index: '/commenttable',
                 title: '竞赛评论展示',
             },
         ],
