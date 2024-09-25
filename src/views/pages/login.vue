@@ -3,7 +3,7 @@
         <div class="login-container">
             <div class="login-header">
                 <img class="logo mr10" src="../../assets/img/logo.svg" alt="" />
-                <div class="login-title">后台管理系统</div>
+                <div class="login-title">KAM管理系统</div>
             </div>
             <el-form :model="param" :rules="rules" ref="login" size="large">
                 <el-form-item prop="username">
@@ -50,6 +50,8 @@ import { usePermissStore } from '@/store/permiss';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
+// import { LoginAdmin } from '@/api/admin';
+import { postRequest } from '@/api/admin';
 
 interface LoginInfo {
     username: string;
@@ -74,29 +76,99 @@ const rules: FormRules = {
             trigger: 'blur',
         },
     ],
-    password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+    password: [
+        { required: true, 
+            message: '请输入密码', 
+            trigger: 'blur' 
+        }
+    ],
 };
 const permiss = usePermissStore();
 const login = ref<FormInstance>();
 const submitForm = (formEl: FormInstance | undefined) => {
+    console.log("登录")
+    // console.log(formEl)
+    // console.log(param)
+    // console.log(param.username)
+    // console.log(param.password)
+
     if (!formEl) return;
-    formEl.validate((valid: boolean) => {
+
+    formEl.validate((valid: boolean) => {                                                                 
         if (valid) {
-            ElMessage.success('登录成功');
-            localStorage.setItem('vuems_name', param.username);
-            const keys = permiss.defaultList[param.username == 'admin' ? 'admin' : 'user'];
-            permiss.handleSet(keys);
-            router.push('/');
-            if (checked.value) {
-                localStorage.setItem('login-param', JSON.stringify(param));
-            } else {
-                localStorage.removeItem('login-param');
-            }
-        } else {
-            ElMessage.error('登录失败');
-            return false;
+
+            const formData = ref({
+                username: param.username,
+                password: param.password,
+            });
+
+            const logingAdmin = async () => {
+                try {
+                    const result = await postRequest('/admin/login', formData.value);
+                    // console.log('请求成功:', result);
+                    // console.log('token',result.data);
+                    // console.log('code',result.code);
+                    
+                    if(result.code == 0){
+                        console.log("登录成功")
+                        ElMessage.success('登录成功');
+                        localStorage.setItem('vuems_name', param.username);
+                        const keys = permiss.defaultList[param.username == 'admin' ? 'admin' : 'user'];
+                        permiss.handleSet(keys);
+                        localStorage.setItem('login-token', JSON.stringify(result.data));
+                        router.push('/');
+                        // 浏览器中存储信息
+                        if (checked.value) {
+                            localStorage.setItem('login-param', JSON.stringify(param));
+                        } else {
+                            localStorage.removeItem('login-param');
+                        }            
+                    }else{
+                        console.log("登录失败")
+                        ElMessage.error('登录失败');
+                        return false;
+                    }
+                } catch (error) {
+                    console.error('请求失败:', error);
+                }
+            };
+
+
+            logingAdmin();
+
+            // const result = LoginAdmin(param.username, param.password);
+            // console.log("登录测试");
+            // console.log(result)
+            
+
+            // 浏览器设置
+            // localStorage.setItem('login-token', JSON.stringify(token));
+
+
+            // if(result.data.sucesss) {
+            //     ElMessage.success('登录成功');
+            //     localStorage.setItem('vuems_name', param.username);
+            //     const keys = permiss.defaultList[param.username == 'admin' ? 'admin' : 'user'];
+            //     permiss.handleSet(keys);
+            //     router.push('/');
+            //     // 浏览器中存储信息
+            //     if (checked.value) {
+            //         localStorage.setItem('login-param', JSON.stringify(param));
+            //     } else {
+            //         localStorage.removeItem('login-param');
+            //     }               
+            // }
+            // else{
+            //     ElMessage.error('登录失败');
+            //     return false;
+            // }
         }
     });
+
+
+
+
+
 };
 
 const tabs = useTabsStore();

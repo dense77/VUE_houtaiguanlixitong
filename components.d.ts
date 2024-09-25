@@ -7,6 +7,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Admin_tableCustom: typeof import('./src/components/admin_table-custom.vue')['default']
+    Admin_tableEdit: typeof import('./src/components/admin_table-edit.vue')['default']
     Countup: typeof import('./src/components/countup.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']

@@ -218,4 +218,36 @@ export const menuData: Menus[] = [
             },
         ],
     },
+    {
+        id: '10',
+        title: '管理员管理',
+        index: '/admin_table',
+        icon: 'UserFilled',
+    },
+    {
+        id: '11',
+        icon: 'GoldMedal',
+        index: '11',
+        title: '竞赛信息',
+        children: [
+            {
+                id: '110',
+                pid: '11',
+                index: '/admin_table',
+                title: '信息展示',
+            },
+            {
+                id: '111',
+                pid: '11',
+                index: '/form',
+                title: '添加竞赛信息',
+            },
+            {
+                id: '112',
+                pid: '11',
+                index: '/admin_table',
+                title: '竞赛评论展示',
+            },
+        ],
+    },
 ];

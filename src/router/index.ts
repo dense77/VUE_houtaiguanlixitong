@@ -24,6 +24,33 @@ const routes: RouteRecordRaw[] = [
                 component: () => import(/* webpackChunkName: "dashboard" */ '../views/dashboard.vue'),
             },
             {
+                path: '/admin_table',
+                name: 'admin_table',
+                meta: {
+                    title: '管理员管理',
+                    noAuth: true,
+                },
+                component: () => import(/* webpackChunkName: "table-editor" */ '../views/table/admintable.vue'),
+            },
+            // {
+            //     path: '/competition_table',
+            //     name: 'competition_table',
+            //     meta: {
+            //         title: '竞赛信息',
+            //         noAuth: true,
+            //     },
+            //     component: () => import(/* webpackChunkName: "table-editor" */ '../views/table/competition_table.vue'),
+            // },
+            // {
+            //     path: '/competition_comment_table',
+            //     name: 'competition_comment_table',
+            //     meta: {
+            //         title: '竞赛评论展示',
+            //         noAuth: true,
+            //     },
+            //     component: () => import(/* webpackChunkName: "table-editor" */ '../views/table/competition_comment_table.vue'),
+            // },
+            {
                 path: '/system-user',
                 name: 'system-user',
                 meta: {
@@ -66,7 +93,8 @@ const routes: RouteRecordRaw[] = [
                     title: '可编辑表格',
                     permiss: '32',
                 },
-                component: () => import(/* webpackChunkName: "table-editor" */ '../views/table/table-editor.vue'),
+                component: () => import(/* webpackChunkName: "table-editor" */ '../views/table/admintable.vue'),
+                // component: () => import(/* webpackChunkName: "table-editor" */ '../views/table/table-editor.vue'),
             },
             {
                 path: '/schart',
@@ -203,6 +231,15 @@ const routes: RouteRecordRaw[] = [
                 },
                 component: () => import(/* webpackChunkName: "form" */ '../views/element/form.vue'),
             },
+            // {
+            //     path: '/competition_form',
+            //     name: 'competition_form',
+            //     meta: {
+            //         title: '竞赛添加',
+            //         permiss: '111',
+            //     },
+            //     component: () => import(/* webpackChunkName: "form" */ '../views/element/competition_form.vue'),
+            // },
             {
                 path: '/upload',
                 name: 'upload',
