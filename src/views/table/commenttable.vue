@@ -5,9 +5,9 @@
 			<TableCustom :columns="columns" :tableData="tableData" :total="page.total" :viewFunc="handleView"
 				:delFunc="handleDelete" :editFunc="handleEdit" :refresh="getData" :currentPage="page.index"
 				:changePage="changePage" :page-size="page.size">
-				<template #toolbarBtn>
+				<!-- <template #toolbarBtn>
 					<el-button type="warning" :icon="CirclePlusFilled" @click="visible = true">新增</el-button>
-				</template>
+				</template> -->
 				<template #money="{ rows }">
 					￥{{ rows.money }}
 				</template>
@@ -73,9 +73,9 @@ let columns = ref([
 	{ prop: 'commentid', label: '评论id', width: 55, align: 'center' },
 	{ prop: 'userid', label: '用户id' },
 	{ prop: 'competitionid', label: '竞赛id' },
-	{ prop: 'commenttext', label: '评论内容' },
+	// { prop: 'commenttext', label: '评论内容' },
 	{ prop: 'isapproved', label: '是否审核' },
-	{ prop: 'createdat', label: '创建时间' },
+	// { prop: 'createdat', label: '创建时间' },
 	{ prop: 'approvedBy', label: '审核人id', width: 100 },
 	{ prop: 'operator', label: '操作', width: 250 },
 ])
@@ -138,7 +138,7 @@ let options = ref<FormOption>({
 		{ type: 'number', prop: 'competitionid', label: '竞赛id' },
 		{ type: 'input', prop: 'commenttext', label: '评论内容' },
 		{ type: 'number', prop: 'isapproved', label: '是否审核' },
-		{ type: 'number', prop: 'createdat', label: '创建时间' },
+		{ type: 'input', prop: 'createdat', label: '创建时间' },
 		{ type: 'number', prop: 'approvedBy', label: '审核人id'},
 	]
 })

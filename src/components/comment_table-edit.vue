@@ -32,7 +32,7 @@
 		</el-row>
 
 		<el-form-item>
-			<el-button type="primary" @click="saveEdit(formRef)">保 存</el-button>
+			<el-button type="primary" @click="saveEdit(formRef)">审 核</el-button>
 		</el-form-item>
 	</el-form>
 </template>
@@ -42,7 +42,7 @@ import { FormOption } from '@/types/form-option';
 import { FormInstance, FormRules, UploadProps } from 'element-plus';
 import { PropType, ref } from 'vue';
 import { ElMessage } from 'element-plus';
-import { postRequest } from '@/api/admin';
+import { putRequest } from '@/api/admin';
 
 const { options, formData, edit, update } = defineProps({
 	options: {
@@ -86,17 +86,19 @@ const saveEdit = (formEl: FormInstance | undefined) => {
 			};
 
 			const data = {
-				username: form.value.username,
-				password: form.value.password,
+				commentid: form.value.commentid,
+				approveid: form.value.isapproved,
+				adminid: form.value.approvedBy
 			};
+
+			console.log('data', data);
 
 			const addAdmin = async () => {
                 try {
-					console.log('data', data);
-                    const result = await postRequest('/admin/register', data, headers);
+                    const result = await putRequest('/contest_ment/check', data, headers);
                     if(result.code == 0){
-						ElMessage.error('管理员新增成功');
-						console.log('管理员信息新增完成')
+						ElMessage.success('评论审核成功');
+						console.log('评论审核成功')
 						update();
                     }else{
                         console.log("登录失败")
