@@ -250,4 +250,30 @@ export const menuData: Menus[] = [
             },
         ],
     },
+    {
+        id: '12',
+        icon: 'GoldMedal',
+        index: '12',
+        title: '就业信息',
+        children: [
+            {
+                id: '120',
+                pid: '12',
+                index: '/admin_table',
+                title: '招聘信息展示',
+            },
+            {
+                id: '121',
+                pid: '12',
+                index: '/commenttable',
+                title: '宣讲会信息展示',
+            },
+            // {
+            //     id: '122',
+            //     pid: '12',
+            //     index: '/commenttable',
+            //     title: '竞赛评论展示',
+            // },
+        ],
+    },
 ];
