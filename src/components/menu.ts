@@ -239,7 +239,7 @@ export const menuData: Menus[] = [
             {
                 id: '111',
                 pid: '11',
-                index: '/form',
+                index: '/competitionform',
                 title: '添加竞赛信息',
             },
             {

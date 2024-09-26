@@ -231,6 +231,15 @@ const routes: RouteRecordRaw[] = [
                 },
                 component: () => import(/* webpackChunkName: "form" */ '../views/element/form.vue'),
             },
+            {
+                path: '/competitionform',
+                name: 'competitionform',
+                meta: {
+                    title: '竞赛添加',
+                    permiss: '21',
+                },
+                component: () => import(/* webpackChunkName: "form" */ '../views/element/competitionform.vue'),
+            },
             // {
             //     path: '/competition_form',
             //     name: 'competition_form',
